@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Hastane Randevu Sistemi";
+}
+
+<div class="container">
+    <h1 class="mt-4">Hastane Randevu Sistemi</h1>
+
+    <div class="mt-4">
+        <label for="ilSelect" class="form-label">İl Seçimi</label>
+        <select class="form-select">
+            <option value="">Seçiniz</option>
+            @for (int i = 0; i < 7; i++)
+            {
+
+            }
+        </select>
+    </div>
+
+    <div class="mt-4">
+        <label for="klinikSelect" class="form-label">Klinik Seçimi</label>
+        <select class="form-select">
+            @for (int i = 0; i < 7; i++)
+            {
+                <div>klinik.Ad</div>
+            }
+
+        </select>
+    </div>
+
+    <div class="mt-4">
+        <label for="hastaneSelect" class="form-label">Hastane Seçimi</label>
+        <select class="form-select">
+            @for (int i = 0; i < 7; i++)
+            {
+                <div>hastane.Ad</div>
+            }
+        </select>
+    </div>
+
+    <div class="mt-4">
+        <label for="doktorSelect" class="form-label">Doktor Seçimi</label>
+        <select class="form-select">
+            <option value="">Seçiniz</option>
+            @for (int i = 0; i < 7; i++)
+            {
+                <div>doktor.Ad</div>
+            }
+        </select>
+    </div>
+
+    <div class="mt-4">
+        <label for="randevuTarihi" class="form-label">Randevu Tarihi</label>
+        <input type="date" class="form-control">
+    </div>
+
+    <div class="mt-4">
+        <label for="randevuSaati" class="form-label">Randevu Saati</label>
+        <select class="form-select">
+            <option value="">Seçiniz</option>
+            @for (int i = 0; i < 7; i++)
+            {
+                <div>saat</div>
+            }
+        </select>
+    </div>
+    <div class="mt-4">
+        <button id="randevuAlButton" class="btn btn-primary">Randevu Al</button>
+    </div>
+</div>

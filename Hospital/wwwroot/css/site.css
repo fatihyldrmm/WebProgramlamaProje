@@ -1,0 +1,48 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/******************---------NAVBAR STYLE--------********************/
+.custom-button {
+    padding: 3px 70px;
+}
+
+.btn-hover {
+    margin-bottom: 2px;
+    max-width: 200px;
+    border-radius: 20px;
+}
+
+    .btn-hover:hover {
+        background-color: #DC4C64 !important;
+        color: azure !important;
+    }
+
+.btn-home {
+    margin-bottom: 2px;
+    border-radius: 20px;
+    background-color: #DC4C64 !important;
+    color: #fff !important;
+    max-width: 200px;
+    text-align: center;
+}
+
+    .btn-home:hover {
+        background-color: #fff !important;
+        color: #DC4C64 !important;
+    }
+/******************-----NAVBAR STYLE FINISH-----********************/
