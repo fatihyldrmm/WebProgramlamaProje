@@ -1,7 +1,9 @@
-﻿<div class="container">
+﻿@model LoginModel
+
+<div class="container">
     <div class="row">
         <div class="col">
-            Column
+
         </div>
         <div class="col align-self-center">
             <div class="card">
@@ -20,12 +22,15 @@
                                 <label for="exampleInputPassword1" class="form-label">Şifre</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1">
                             </div>
-                            <div class="mb-3 form-check">
+                            <div class="mb-2 form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Beni Hatırla</label>
                             </div>
+                            <div class="mb-3">
+                                <a class="link-opacity-75-hover fs-6" asp-action="Register">Kayıtlı değil misin?</a>
+                            </div>
                             <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-success justify-content-end col-3">Giriş Yap</button>
+                                <button type="submit" class="btn btn-primary justify-content-end col-3">Giriş</button>
                             </div>
                         </form>
                     </blockquote>
@@ -33,7 +38,7 @@
             </div>
         </div>
         <div class="col">
-            Column
+
         </div>
     </div>
 </div>

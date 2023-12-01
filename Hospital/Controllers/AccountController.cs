@@ -40,9 +40,9 @@ namespace Hospital.Controllers
                     await _signInManager.SignOutAsync();
                     if ((await _signInManager.PasswordSignInAsync(user, model.Password, false, false)).Succeeded)
                     {
-                        bool isInRole = await _userManager.IsInRoleAsync(user, "Customer");
+                        bool isInRole = await _userManager.IsInRoleAsync(user, "");
                         if (isInRole)
-                            return Redirect("/" + "Customer");
+                            return Redirect("/" + "Doctor");
                         else
                             return Redirect("/" + "Company");
                     }
@@ -63,41 +63,35 @@ namespace Hospital.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register([FromForm] RegisterDto model)
-        //{
-        //    var user = new IdentityUser
-        //    {
-        //        UserName = model.UserName,
-        //        Email = model.Email,
-        //    };
-        //    var result = await _userManager
-        //        .CreateAsync(user, model.Password);
-
-        //    if (result.Succeeded)
-        //    {
-        //        var roleResult = await _userManager
-        //            .AddToRoleAsync(user, "Customer");
-
-        //        if (roleResult.Succeeded)
-        //            return RedirectToAction("Login", new { ReturnUrl = "/" });
-
-        //    }
-        //    else
-        //    {
-        //        foreach (var err in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", err.Description);
-        //        }
-        //    }
-        //    return View();
-        //}
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([FromForm] RegisterDto model)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var user = new IdentityUser
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+            };
+            var result = await _userManager
+                .CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                var roleResult = await _userManager
+                    .AddToRoleAsync(user, "Customer");
+
+                if (roleResult.Succeeded)
+                    return RedirectToAction("Login", new { ReturnUrl = "/" });
+
+            }
+            else
+            {
+                foreach (var err in result.Errors)
+                {
+                    ModelState.AddModelError("", err.Description);
+                }
+            }
+            return View();
         }
     }
 }
