@@ -16,7 +16,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 
 builder.Services.AddDbContext<HospitalDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("sqlconnection"),
+    options.UseSqlServer(builder.Configuration.GetConnectionString("sqlconnection"),
     b => b.MigrationsAssembly("Hospital"));
 
     options.EnableSensitiveDataLogging(true);
@@ -51,21 +51,18 @@ app.UseEndpoints(endpoints =>
         pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
     );
     endpoints.MapAreaControllerRoute(
-        name: "User",
-        areaName: "User",
-        pattern: "User/{controller=Home}/{action=Index}/{id?}"
+        name: "Citizen",
+        areaName: "Citizen",
+        pattern: "Citizen/{controller=Home}/{action=Index}/{id?}"
     );
     endpoints.MapAreaControllerRoute(
         name: "Doctor",
         areaName: "Doctor",
         pattern: "Doctor/{controller=Home}/{action=Index}/{id?}"
     );
-    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute("default", "{controller=Account}/{action=Login}/{id?}");
 
 });
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

@@ -12,25 +12,27 @@
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
+                        <div>
+                            <div class="text-danger" asp-validation-summary="All"></div>
+                        </div>
                         <form>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email Adresi</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                @* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> *@
+                                <label asp-for="Email" class="form-label">Email Adresi</label>
+                                <input asp-for ="Email" type="email" class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Şifre</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label asp-for="Password" class="form-label">Şifre</label>
+                                <input asp-for="Password" type="password" class="form-control">
                             </div>
-                            <div class="mb-2 form-check">
+@*                             <div class="mb-2 form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Beni Hatırla</label>
+                            </div> *@
+                            <div class="row justify-content-center">
+                                <button type="submit" class="btn btn-primary justify-content-end col-3"><i class="fa-solid fa-right-to-bracket"></i>  Giriş</button>
                             </div>
                             <div class="mb-3">
                                 <a class="link-opacity-75-hover fs-6" asp-action="Register">Kayıtlı değil misin?</a>
-                            </div>
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-primary justify-content-end col-3">Giriş</button>
                             </div>
                         </form>
                     </blockquote>
@@ -42,5 +44,6 @@
         </div>
     </div>
 </div>
+
 
 

@@ -1,4 +1,5 @@
-﻿using Hospital.Models;
+﻿using Hospital.Dtos;
+using Hospital.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -20,12 +21,9 @@ namespace Hospital.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Login([FromQuery(Name = "ReturnUrl")] string ReturnUrl = "/")
+        public IActionResult Login()
         {
-            return View(new LoginModel()
-            {
-                ReturnUrl = ReturnUrl
-            });
+            return View();
         }
 
         [HttpPost]
@@ -34,17 +32,23 @@ namespace Hospital.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await _userManager.FindByNameAsync(model.Name);
+                IdentityUser user = await _userManager.FindByNameAsync(model.Email);
                 if (user is not null)
                 {
                     await _signInManager.SignOutAsync();
                     if ((await _signInManager.PasswordSignInAsync(user, model.Password, false, false)).Succeeded)
                     {
-                        bool isInRole = await _userManager.IsInRoleAsync(user, "");
-                        if (isInRole)
+                        bool isInRoleDoctor = await _userManager.IsInRoleAsync(user, "Doctor");
+                        bool isInRoleAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+                        bool isInRoleCitizen = await _userManager.IsInRoleAsync(user, "Citizen");
+                        if (isInRoleDoctor)
                             return Redirect("/" + "Doctor");
+                        else if (isInRoleAdmin)
+                            return Redirect("/" + "Admin");
+                        else if(isInRoleCitizen)
+                            return Redirect("/" + "Citizen");
                         else
-                            return Redirect("/" + "Company");
+                            throw new Exception("User is not in any role");
                     }
                 }
                 ModelState.AddModelError("Error", "Invalid username or passwoord.");
